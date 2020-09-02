@@ -6,9 +6,9 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Users
+ * Class User
  * @package App\Models\Admin
- * @version August 29, 2020, 4:47 am UTC
+ * @version September 2, 2020, 3:14 am UTC
  *
  * @property string $name
  * @property string $email
@@ -24,10 +24,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $idKtp
  * @property string $photo
  * @property integer $status
+ * @property integer $roles
  * @property string|\Carbon\Carbon $login_at
  * @property string $login_ip
  */
-class Users extends Model
+class User extends Model
 {
     use SoftDeletes;
 
@@ -56,6 +57,7 @@ class Users extends Model
         'idKtp',
         'photo',
         'status',
+        'roles',
         'login_at',
         'login_ip'
     ];
@@ -81,6 +83,7 @@ class Users extends Model
         'idKtp' => 'string',
         'photo' => 'string',
         'status' => 'integer',
+        'roles' => 'integer',
         'login_at' => 'datetime',
         'login_ip' => 'string'
     ];
@@ -105,6 +108,7 @@ class Users extends Model
         'idKtp' => 'nullable|string|max:191',
         'photo' => 'nullable|string|max:191',
         'status' => 'nullable|integer',
+        'roles' => 'nullable|integer',
         'login_at' => 'nullable',
         'login_ip' => 'nullable|string|max:20',
         'created_at' => 'nullable',

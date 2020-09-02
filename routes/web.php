@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('login');
+// });
+
+Route::redirect('/', '/login');
+
 
 Auth::routes(['verify' => true]);
 
@@ -23,7 +26,7 @@ Route::get('/home', 'HomeController@index')->middleware('verified');
 
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::resource('users', 'Admin\UsersController', ["as" => 'admin']);
+    Route::resource('users', 'Admin\UserController', ["as" => 'admin']);
 });
 
 
@@ -49,4 +52,14 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('hosts', 'Admin\HostsController', ["as" => 'admin']);
+});
+
+Route::get('optimize', function () {
+
+	/* php artisan migrate */
+
+    \Artisan::call('optimize');
+
+    dd("Done");
+
 });

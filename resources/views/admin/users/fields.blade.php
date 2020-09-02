@@ -102,6 +102,12 @@
     {!! Form::number('status', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Roles Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('roles', 'Roles:') !!}
+    {!! Form::number('roles', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Login At Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('login_at', 'Login At:') !!}

@@ -2,16 +2,16 @@
 
 namespace App\Repositories\Admin;
 
-use App\Models\Admin\Users;
+use App\Models\Admin\User;
 use App\Repositories\BaseRepository;
 
 /**
- * Class UsersRepository
+ * Class UserRepository
  * @package App\Repositories\Admin
- * @version August 29, 2020, 4:47 am UTC
+ * @version September 2, 2020, 3:14 am UTC
 */
 
-class UsersRepository extends BaseRepository
+class UserRepository extends BaseRepository
 {
     /**
      * @var array
@@ -31,6 +31,7 @@ class UsersRepository extends BaseRepository
         'idKtp',
         'photo',
         'status',
+        'roles',
         'login_at',
         'login_ip'
     ];
@@ -50,6 +51,6 @@ class UsersRepository extends BaseRepository
      **/
     public function model()
     {
-        return Users::class;
+        return User::class;
     }
 }

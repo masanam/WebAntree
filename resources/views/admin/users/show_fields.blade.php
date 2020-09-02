@@ -1,96 +1,102 @@
 <!-- Name Field -->
 <div class="form-group">
     {!! Form::label('name', 'Name:') !!}
-    <p>{{ $users->name }}</p>
+    <p>{{ $user->name }}</p>
 </div>
 
 <!-- Email Field -->
 <div class="form-group">
     {!! Form::label('email', 'Email:') !!}
-    <p>{{ $users->email }}</p>
+    <p>{{ $user->email }}</p>
 </div>
 
 <!-- Email Verified At Field -->
 <div class="form-group">
     {!! Form::label('email_verified_at', 'Email Verified At:') !!}
-    <p>{{ $users->email_verified_at }}</p>
+    <p>{{ $user->email_verified_at }}</p>
 </div>
 
 <!-- Password Field -->
 <div class="form-group">
     {!! Form::label('password', 'Password:') !!}
-    <p>{{ $users->password }}</p>
+    <p>{{ $user->password }}</p>
 </div>
 
 <!-- Dateofbirth Field -->
 <div class="form-group">
     {!! Form::label('dateOfBirth', 'Dateofbirth:') !!}
-    <p>{{ $users->dateOfBirth }}</p>
+    <p>{{ $user->dateOfBirth }}</p>
 </div>
 
 <!-- Phone Field -->
 <div class="form-group">
     {!! Form::label('phone', 'Phone:') !!}
-    <p>{{ $users->phone }}</p>
+    <p>{{ $user->phone }}</p>
 </div>
 
 <!-- Address Field -->
 <div class="form-group">
     {!! Form::label('address', 'Address:') !!}
-    <p>{{ $users->address }}</p>
+    <p>{{ $user->address }}</p>
 </div>
 
 <!-- City Field -->
 <div class="form-group">
     {!! Form::label('city', 'City:') !!}
-    <p>{{ $users->city }}</p>
+    <p>{{ $user->city }}</p>
 </div>
 
 <!-- Gender Field -->
 <div class="form-group">
     {!! Form::label('gender', 'Gender:') !!}
-    <p>{{ $users->gender }}</p>
+    <p>{{ $user->gender }}</p>
 </div>
 
 <!-- Remember Token Field -->
 <div class="form-group">
     {!! Form::label('remember_token', 'Remember Token:') !!}
-    <p>{{ $users->remember_token }}</p>
+    <p>{{ $user->remember_token }}</p>
 </div>
 
 <!-- Blood Field -->
 <div class="form-group">
     {!! Form::label('blood', 'Blood:') !!}
-    <p>{{ $users->blood }}</p>
+    <p>{{ $user->blood }}</p>
 </div>
 
 <!-- Idktp Field -->
 <div class="form-group">
     {!! Form::label('idKtp', 'Idktp:') !!}
-    <p>{{ $users->idKtp }}</p>
+    <p>{{ $user->idKtp }}</p>
 </div>
 
 <!-- Photo Field -->
 <div class="form-group">
     {!! Form::label('photo', 'Photo:') !!}
-    <p>{{ $users->photo }}</p>
+    <p>{{ $user->photo }}</p>
 </div>
 
 <!-- Status Field -->
 <div class="form-group">
     {!! Form::label('status', 'Status:') !!}
-    <p>{{ $users->status }}</p>
+    <p>{{ $user->status }}</p>
+</div>
+
+<!-- Roles Field -->
+<div class="form-group">
+    {!! Form::label('roles', 'Roles:') !!}
+    <p>{{ $user->roles }}</p>
 </div>
 
 <!-- Login At Field -->
 <div class="form-group">
     {!! Form::label('login_at', 'Login At:') !!}
-    <p>{{ $users->login_at }}</p>
+    <p>{{ $user->login_at }}</p>
 </div>
 
 <!-- Login Ip Field -->
 <div class="form-group">
     {!! Form::label('login_ip', 'Login Ip:') !!}
-    <p>{{ $users->login_ip }}</p>
+    <p>{{ $user->login_ip }}</p>
 </div>
 

@@ -47,3 +47,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('hosts', 'Admin\HostsAPIController');
 });
+
+Route::post('/login', 'Admin\AuthAPIController@login');
+
+Route::post('/signup', 'Admin\AuthAPIController@signup');

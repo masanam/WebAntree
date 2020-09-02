@@ -2,11 +2,11 @@
 
 namespace App\DataTables\Admin;
 
-use App\Models\Admin\Users;
+use App\Models\Admin\User;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class UsersDataTable extends DataTable
+class UserDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -24,10 +24,10 @@ class UsersDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Users $model
+     * @param \App\Models\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Users $model)
+    public function query(User $model)
     {
         return $model->newQuery();
     }
@@ -69,15 +69,13 @@ class UsersDataTable extends DataTable
             'email',
             'dateOfBirth',
             'phone',
-            'address',
             'city',
             'gender',
             'blood',
             'idKtp',
             'photo',
-            'status',
-            'login_at',
-            'login_ip'
+            'roles',
+            'status'
         ];
     }
 
