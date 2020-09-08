@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}">
+
     @yield('css')
 </head>
 
@@ -60,7 +63,7 @@
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="/images/logo.png"
+                                    <img src="/images/logo.png "
                                          class="img-circle" alt="User Image"/>
                                     <p>
                                         {{ Auth::user()->name }}
@@ -160,6 +163,64 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <script>
+   var route_prefix = "/filemanager";
+  </script>
+
+<script>
+    {!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/stand-alone-button.js')) !!}
+  </script>
+  
+  <script>
+    // $('#lfm').filemanager('image', {prefix: route_prefix});
+    $('#lfm').filemanager('file', {prefix: route_prefix});
+    $('#lfm1').filemanager('file', {prefix: route_prefix});
+    $('#lfm2').filemanager('file', {prefix: route_prefix});
+    $('#lfm3').filemanager('file', {prefix: route_prefix});
+
+  </script>
+
+  <script>
+    var lfm = function(id, type, options) {
+      let button = document.getElementById(id);
+
+      button.addEventListener('click', function () {
+        var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
+        var target_input = document.getElementById(button.getAttribute('data-input'));
+        var target_preview = document.getElementById(button.getAttribute('data-preview'));
+
+        window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
+        window.SetUrl = function (items) {
+          var file_path = items.map(function (item) {
+            return item.url;
+          }).join(',');
+
+          // set the value of the desired input to image url
+          target_input.value = file_path;
+          target_input.dispatchEvent(new Event('change'));
+
+          // clear previous preview
+          target_preview.innerHtml = '';
+
+          // set or change the preview image src
+          items.forEach(function (item) {
+            let img = document.createElement('img')
+            img.setAttribute('style', 'height: 5rem')
+            img.setAttribute('src', item.thumb_url)
+            target_preview.appendChild(img);
+          });
+
+          // trigger change event
+          target_preview.dispatchEvent(new Event('change'));
+        };
+      });
+    };
+
+    lfm('lfm2', 'file', {prefix: route_prefix});
+  </script>
 
     @stack('scripts')
 </body>

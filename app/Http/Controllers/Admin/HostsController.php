@@ -39,7 +39,12 @@ class HostsController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.hosts.create');
+        $status = \App\Models\Admin\Statuses::get();
+        $category = \App\Models\Admin\Categories::get();
+
+        return view('admin.hosts.create')
+        ->with('category', $category)
+        ->with('status', $status);
     }
 
     /**
@@ -90,6 +95,8 @@ class HostsController extends AppBaseController
     public function edit($id)
     {
         $hosts = $this->hostsRepository->find($id);
+        $status = \App\Models\Admin\Statuses::get();
+        $category = \App\Models\Admin\Categories::get();
 
         if (empty($hosts)) {
             Flash::error('Hosts not found');
@@ -97,7 +104,10 @@ class HostsController extends AppBaseController
             return redirect(route('admin.hosts.index'));
         }
 
-        return view('admin.hosts.edit')->with('hosts', $hosts);
+        return view('admin.hosts.edit')
+        ->with('hosts', $hosts)
+        ->with('category', $category)
+        ->with('status', $status);
     }
 
     /**

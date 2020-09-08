@@ -18,7 +18,10 @@ class HostsDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'admin.hosts.datatables_actions');
+        return $dataTable->addColumn('action', 'admin.hosts.datatables_actions')
+        ->editColumn('image', function ($host) 
+        {  return '<img src='.$host->image.' height="80px"/>'; })
+            ->rawColumns(['image','action']);
     }
 
     /**
@@ -29,7 +32,9 @@ class HostsDataTable extends DataTable
      */
     public function query(Hosts $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()
+        ->with('category')
+        ->with('status');
     }
 
     /**
@@ -69,12 +74,11 @@ class HostsDataTable extends DataTable
             'contact',
             'email',
             'phone',
-            'address',
             'city',
-            'photo',
+            'image',
             'description',
-            'categoryId',
-            'status'
+            'category' => ['name' => 'category.title', 'data' => 'category.title', 'defaultContent'=> '', 'searchable'=>false],        
+            'status' => ['name' => 'status.title', 'data' => 'status.title', 'defaultContent'=> '', 'searchable'=>false]        
         ];
     }
 

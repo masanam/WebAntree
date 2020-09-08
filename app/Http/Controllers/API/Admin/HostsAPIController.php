@@ -128,4 +128,17 @@ class HostsAPIController extends AppBaseController
 
         return $this->sendSuccess('Hosts deleted successfully');
     }
+
+    public function getHostbyCat(Request $request)
+    {
+        $type = $request->type;
+        $hosts = \App\Models\Admin\Hosts::with('category')->where('categoryId',$type)->get();
+
+        if (empty($hosts)) {
+            return $this->sendError('Hosts not found');
+        }
+
+        return $this->sendResponse($hosts->toArray(), 'Hosts retrieved successfully');
+    }
+
 }

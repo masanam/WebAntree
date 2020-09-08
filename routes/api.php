@@ -36,6 +36,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('lokets', 'Admin\LoketsAPIController');
+    Route::post('/getLoketbyCat', 'Admin\LoketsAPIController@getLoketbyCat');
+
 });
 
 
@@ -46,6 +48,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('hosts', 'Admin\HostsAPIController');
+    Route::post('/getHostbyCat', 'Admin\HostsAPIController@getHostbyCat');
+
+
 });
 
 Route::post('/login', 'Admin\AuthAPIController@login');

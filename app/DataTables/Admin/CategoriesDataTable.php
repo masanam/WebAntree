@@ -18,7 +18,10 @@ class CategoriesDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'admin.categories.datatables_actions');
+        return $dataTable->addColumn('action', 'admin.categories.datatables_actions')
+        ->editColumn('image', function ($category) 
+        {  return '<img src='.$category->image.' height="80px"/>'; })
+            ->rawColumns(['image','action']);
     }
 
     /**
@@ -66,6 +69,7 @@ class CategoriesDataTable extends DataTable
     {
         return [
             'title',
+            'image',
             'description'
         ];
     }

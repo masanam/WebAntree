@@ -35,6 +35,7 @@ class Lokets extends Model
 
     public $fillable = [
         'title',
+        'image',
         'description',
         'schedule',
         'quota',
@@ -52,6 +53,7 @@ class Lokets extends Model
     protected $casts = [
         'id' => 'integer',
         'title' => 'string',
+        'image' => 'string',
         'description' => 'string',
         'schedule' => 'string',
         'quota' => 'integer',
@@ -80,5 +82,23 @@ class Lokets extends Model
         'deleted_at' => 'nullable'
     ];
 
-    
+    public function getTableColumns() {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function status()
+    {
+        return $this->belongsTo(\App\Models\Admin\Statuses::class, 'status', 'id');
+    }
+
+        /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function host()
+    {
+        return $this->belongsTo(\App\Models\Admin\Hosts::class, 'hostId', 'id');
+    }
 }

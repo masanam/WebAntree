@@ -18,7 +18,10 @@ class LoketsDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'admin.lokets.datatables_actions');
+        return $dataTable->addColumn('action', 'admin.lokets.datatables_actions')
+        ->editColumn('image', function ($loket) 
+        {  return '<img src='.$loket->image.' height="80px"/>'; })
+            ->rawColumns(['image','action']);
     }
 
     /**
@@ -29,7 +32,9 @@ class LoketsDataTable extends DataTable
      */
     public function query(Lokets $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()
+        ->with('host')
+        ->with('status');
     }
 
     /**
@@ -66,13 +71,13 @@ class LoketsDataTable extends DataTable
     {
         return [
             'title',
+            'image',
             'description',
             'schedule',
             'quota',
-            'hostId',
-            'status',
-            'created_by',
-            'updated_by'
+            'host' => ['name' => 'host.title', 'data' => 'host.title', 'defaultContent'=> '', 'searchable'=>false],        
+            'status' => ['name' => 'status.title', 'data' => 'status.title', 'defaultContent'=> '', 'searchable'=>false]        
+
         ];
     }
 

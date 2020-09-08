@@ -39,7 +39,12 @@ class LoketsController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.lokets.create');
+        $status = \App\Models\Admin\Statuses::get();
+        $host = \App\Models\Admin\Hosts::get();
+
+        return view('admin.lokets.create')
+        ->with('host', $host)
+        ->with('status', $status);
     }
 
     /**
@@ -90,6 +95,8 @@ class LoketsController extends AppBaseController
     public function edit($id)
     {
         $lokets = $this->loketsRepository->find($id);
+        $status = \App\Models\Admin\Statuses::get();
+        $host = \App\Models\Admin\Hosts::get();
 
         if (empty($lokets)) {
             Flash::error('Lokets not found');
@@ -97,7 +104,9 @@ class LoketsController extends AppBaseController
             return redirect(route('admin.lokets.index'));
         }
 
-        return view('admin.lokets.edit')->with('lokets', $lokets);
+        return view('admin.lokets.edit')->with('lokets', $lokets)
+        ->with('host', $host)
+        ->with('status', $status);
     }
 
     /**

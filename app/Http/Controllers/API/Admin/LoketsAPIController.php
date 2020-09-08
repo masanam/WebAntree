@@ -128,4 +128,17 @@ class LoketsAPIController extends AppBaseController
 
         return $this->sendSuccess('Lokets deleted successfully');
     }
+
+
+    public function getLoketbyCat(Request $request)
+    {
+        $type = $request->type;
+        $lokets = \App\Models\Admin\Lokets::with('host')->where('hostId',$type)->get();
+
+        if (empty($lokets)) {
+            return $this->sendError('Hosts not found');
+        }
+
+        return $this->sendResponse($lokets->toArray(), 'Lokets retrieved successfully');
+    }
 }

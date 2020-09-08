@@ -20,6 +20,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "laravelcollective/html": "^6.1",
+        "unisharp/laravel-filemanager": "^2.1",
         "yajra/laravel-datatables-buttons": "^4.0",
         "yajra/laravel-datatables-oracle": "^9.10"
     },

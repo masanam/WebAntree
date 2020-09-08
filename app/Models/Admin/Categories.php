@@ -29,6 +29,7 @@ class Categories extends Model
 
     public $fillable = [
         'title',
+        'image',
         'description'
     ];
 
@@ -40,6 +41,7 @@ class Categories extends Model
     protected $casts = [
         'id' => 'integer',
         'title' => 'string',
+        'image' => 'string',
         'description' => 'string'
     ];
 
@@ -56,5 +58,24 @@ class Categories extends Model
         'deleted_at' => 'nullable'
     ];
 
+    public function getTableColumns() {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function status()
+    {
+        return $this->belongsTo(\App\Models\Admin\Statuses::class, 'status', 'id');
+    }
+
+        /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function category()
+    {
+        return $this->belongsTo(\App\Models\Management::class, 'category_id', 'id');
+    }
     
 }

@@ -37,6 +37,7 @@ class Hosts extends Model
 
     public $fillable = [
         'title',
+        'image',
         'contact',
         'email',
         'phone',
@@ -56,6 +57,7 @@ class Hosts extends Model
     protected $casts = [
         'id' => 'integer',
         'title' => 'string',
+        'image' => 'string',
         'contact' => 'string',
         'email' => 'string',
         'phone' => 'string',
@@ -78,8 +80,8 @@ class Hosts extends Model
         'email' => 'nullable|string|max:191',
         'phone' => 'nullable|string|max:191',
         'address' => 'nullable|string',
-        'city' => 'required|string|max:191',
-        'photo' => 'required|string|max:191',
+        'city' => 'nullable|string|max:191',
+        'photo' => 'nullable|string|max:191',
         'description' => 'nullable|string',
         'categoryId' => 'nullable|integer',
         'status' => 'nullable|integer',
@@ -88,5 +90,23 @@ class Hosts extends Model
         'deleted_at' => 'nullable'
     ];
 
-    
+    public function getTableColumns() {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function status()
+    {
+        return $this->belongsTo(\App\Models\Admin\Statuses::class, 'status', 'id');
+    }
+
+        /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function category()
+    {
+        return $this->belongsTo(\App\Models\Admin\Categories::class, 'categoryId', 'id');
+    }
 }
