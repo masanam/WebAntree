@@ -20,7 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::resource('users', 'Admin\UsersAPIController');
+    Route::resource('users', 'Admin\UserAPIController');
+    Route::post('/getUserProfile', 'Admin\UserAPIController@getUserProfile');
+
 });
 
 
@@ -56,3 +58,8 @@ Route::group(['prefix' => 'admin'], function () {
 Route::post('/login', 'Admin\AuthAPIController@login');
 
 Route::post('/signup', 'Admin\AuthAPIController@signup');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('sliders', 'Admin\SlidersAPIController');
+});

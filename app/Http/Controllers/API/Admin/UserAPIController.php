@@ -128,4 +128,17 @@ class UserAPIController extends AppBaseController
 
         return $this->sendSuccess('User deleted successfully');
     }
+
+    public function getUserProfile(Request $request)
+    {
+        $email = $request->email;
+        $user = \App\Models\Admin\User::where('email',$email)->get();
+
+        if (empty($user)) {
+            return $this->sendError('Hosts not found');
+        }
+
+        return $this->sendResponse($user->toArray(), 'Users retrieved successfully');
+    }
+
 }

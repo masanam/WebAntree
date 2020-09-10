@@ -6,7 +6,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Models\Admin\Users;
+use App\Models\Admin\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,7 +29,7 @@ class AuthAPIController extends AppBaseController
             'password' => 'required|string'
         ]);        
         
-        $user = new Users([
+        $user = new User([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -76,7 +76,9 @@ class AuthAPIController extends AppBaseController
          if ($request->remember_me)
             $token->expires_at = Carbon::now()->addWeeks(1);        
             $token->save();        
+
             return response()->json([
+            'userid' => $username->id,
             'name' => $username->name,
             'email' => $username->email,
             'access_token' => $tokenResult->accessToken,

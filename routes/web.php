@@ -63,3 +63,7 @@ Route::get('optimize', function () {
     dd("Done");
 
 });
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('sliders', 'Admin\SlidersController', ["as" => 'admin']);
+});

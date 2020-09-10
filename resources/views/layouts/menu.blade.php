@@ -53,3 +53,7 @@
         
 
 
+<li class="{{ Request::is('admin/sliders*') ? 'active' : '' }}">
+    <a href="{{ route('admin.sliders.index') }}"><i class="fa fa-edit"></i><span>Sliders</span></a>
+</li>
+
